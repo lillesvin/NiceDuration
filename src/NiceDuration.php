@@ -95,12 +95,12 @@ class NiceDuration
     private $f;
 
     /**
-    * Instantiates NiceDuration and sets durationSeconds and durationFraction
-    *
-    * @param    float $duration     Duration to convert
-    * @param    int $precision      Timing precision (default: 3)
-    * @magic
-    */
+     * Instantiates NiceDuration and sets durationSeconds and durationFraction
+     *
+     * @param    float $duration     Duration to convert
+     * @param    int $precision      Timing precision (default: 3)
+     * @magic
+     */
     public function __construct($duration, $precision = 3)
     {
         $this->duration          = $this->validateFloat($duration);
