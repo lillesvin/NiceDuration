@@ -32,7 +32,7 @@ class NiceDuration
     /**
      * @var     float       Cutoff point for returning fractional seconds
      */
-    private $fractionCutoff = (float)43200; // 12 hours
+    private $fractionCutoff = 43200.0; // 12 hours
 
     /**
      * @internal
