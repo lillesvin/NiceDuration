@@ -1,7 +1,6 @@
 language: php
 
 php:
- - 5.2
  - 5.3
  - 5.4
  - 5.5
@@ -11,7 +10,6 @@ php:
 
 matrix:
   allow_failures:
-  - php: 5.2
   - php: 7.0
   - php: hhvm
 
@@ -21,7 +19,7 @@ before_script:
 
 script:
  - mkdir -p build/logs
- - phpunit
+ - phpunit --coverage-text --colors=auto
 
 after_script:
  - php vendor/bin/coveralls -v
