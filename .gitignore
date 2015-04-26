@@ -1,6 +1,6 @@
-vendor/
 composer.lock
-clover.xml
+vendor/
+phpunit.xml
 build/*
 *.swp
 
