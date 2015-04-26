@@ -12,7 +12,7 @@ before_script:
 
 script:
  - mkdir -p build/logs
- - phpunit --coverage-clover build/logs/clover.xml
+ - phpunit --coverage-clover build/logs/clover.xml --bootstrap vendor/autoload.php tests/NiceDurationTest.php
 
 after_script:
  - php vendor/bin/coveralls -v
