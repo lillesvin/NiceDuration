@@ -10,14 +10,15 @@ It's pretty simple. You feed it a bunch of seconds, it returns a formatted strin
 
 ```PHP
 <?php
-$duration = (60 * 22) + 44.14; // 22 minutes, 44.14 seconds
+$duration = 1364.14;
 
 $nd = new \NiceDuration\NiceDuration($duration);
 
 $nd->format(); // Returns "22:44.140"
 
-// A threshold for excluding fractions can be defined:
-$nd->setFractionCutoff(600); // Cutoff in seconds
+// A cutoff for fractions can be set (in seconds).
+// Only durations below the cutoff will include fractions.
+$nd->setFractionCutoff(600);
 
 $nd->format(); // Returns "22:44"
 ```
