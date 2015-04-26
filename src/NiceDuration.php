@@ -30,9 +30,9 @@ class NiceDuration
     private $fractionPrecision = 3;
 
     /**
-     * @var     int         Cutoff point for returning fractional seconds
+     * @var     float       Cutoff point for returning fractional seconds
      */
-    private $fractionCutoff = 43200; // 12 hours
+    private $fractionCutoff = (float)43200; // 12 hours
 
     /**
      * @internal
@@ -59,11 +59,21 @@ class NiceDuration
     private $minuteInSeconds = 60;
 
     /**
+     * @internal
+     * @var     int y       Years
+     * @var     int d       Days
+     * @var     int h       Hours
+     * @var     int m       Minutes
+     * @var     int s       Seconds
+     * @var     float f     Fraction
+     */
+    private $y, $d, $h, $m, $s, $f;
+
+    /**
     * Instantiates NiceDuration and sets durationSeconds and durationFraction
     *
     * @param    float $duration     Duration to convert
     * @param    int $precision      Timing precision (default: 3)
-    * @return   object NiceDuration
     * @magic
     */
     public function __construct($duration, $precision = 3)
@@ -71,7 +81,7 @@ class NiceDuration
         $this->duration          = $this->validateFloat($duration);
         $this->fractionPrecision = $precision;
         $this->durationSeconds   = (int)$this->duration;
-        $this->durationFraction  = bcsub(
+        $this->durationFraction  = (float)bcsub(
             abs($this->duration),
             floor(abs($this->duration)),
             $this->fractionPrecision + 1 // Attempt to avoid rounding
@@ -204,7 +214,7 @@ class NiceDuration
     /**
      * Extracts (and subtracts) year(s) from duration
      *
-     * @return  void
+     * @return  int
      */
     private function getYears()
     {
@@ -219,7 +229,7 @@ class NiceDuration
     /**
      * Extracts (and subtracts) day(s) from duration
      *
-     * @return  void
+     * @return  int
      */
     private function getDays()
     {
@@ -234,7 +244,7 @@ class NiceDuration
     /**
      * Extracts (and subtracts) hour(s) from duration
      *
-     * @return  void
+     * @return  int
      */
     private function getHours()
     {
@@ -249,7 +259,7 @@ class NiceDuration
     /**
      * Extracts (and subtracts) minute(s) from duration
      *
-     * @return  void
+     * @return  int
      */
     private function getMinutes()
     {
@@ -264,7 +274,7 @@ class NiceDuration
     /**
      * Extracts seconds from duration
      *
-     * @return  void
+     * @return  int
      */
     private function getSeconds()
     {
@@ -274,7 +284,7 @@ class NiceDuration
     /**
      * Gets the truncated (unrounded) fractional seconds
      *
-     * @return  void
+     * @return  float
      */
     private function getFraction()
     {
@@ -287,9 +297,9 @@ class NiceDuration
     /**
      * Truncates float/int to $length decimal places without rounding
      *
-     * @param   float|int $number       Number to truncate
-     * @param   int $length             Desired number of decimal places
-     * @return  float                   Truncated (unrounded) float
+     * @param   float $number   Number to truncate
+     * @param   int $length     Desired number of decimal places
+     * @return  float           Truncated (unrounded) float
      */
     private function truncateFraction($number, $length)
     {
