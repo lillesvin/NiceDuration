@@ -1,4 +1,6 @@
-[![Build Status](https://travis-ci.org/lillesvin/NiceDuration.svg?branch=master)](https://travis-ci.org/lillesvin/NiceDuration)
+[![Build Status](https://travis-ci.org/lillesvin/NiceDuration.svg?branch=master)](https://travis-ci.org/lillesvin/NiceDuration) 
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/lillesvin/NiceDuration/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/lillesvin/NiceDuration/?branch=master) 
+[![Code Coverage](https://scrutinizer-ci.com/g/lillesvin/NiceDuration/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/lillesvin/NiceDuration/?branch=master)
 
 # NiceDuration
 Converts a duration in seconds into something human readable

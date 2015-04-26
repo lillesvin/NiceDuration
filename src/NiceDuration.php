@@ -44,13 +44,13 @@ class NiceDuration
      * @internal
      * @var     int         Duration of a day in seconds
      */
-    private $dayInSeconds    = 86400;
+    private $dayInSeconds = 86400;
 
     /**
      * @internal
      * @var     int         Duration of an hour in seconds
      */
-    private $hourInSeconds   = 3600;
+    private $hourInSeconds = 3600;
 
     /**
      * @internal
@@ -60,14 +60,39 @@ class NiceDuration
 
     /**
      * @internal
-     * @var     int y       Years
-     * @var     int d       Days
-     * @var     int h       Hours
-     * @var     int m       Minutes
-     * @var     int s       Seconds
+     * @var     int y       Year(s)
+     */
+    private $y;
+
+    /**
+     * @internal
+     * @var     int d       Day(s)
+     */
+    private $d;
+
+    /**
+     * @internal
+     * @var     int h       Hour(s)
+     */
+    private $h;
+
+    /**
+     * @internal
+     * @var     int m       Minute(s)
+     */
+    private $m;
+
+    /**
+     * @internal
+     * @var     int s       Second(s)
+     */
+    private $s;
+
+    /**
+     * @internal
      * @var     float f     Fraction
      */
-    private $y, $d, $h, $m, $s, $f;
+    private $f;
 
     /**
     * Instantiates NiceDuration and sets durationSeconds and durationFraction
@@ -152,13 +177,13 @@ class NiceDuration
      */
     private function formatTime()
     {
-        if ($this->duration >= $this->hourInSeconds) {
+        if ($this->includeHour()) {
             if (!$this->returnFractions()) {
                 return sprintf("%02d:%02d:%02d", $this->h, $this->m, $this->s);
             }
             return sprintf("%02d:%02d:%06.3f", $this->h, $this->m, ($this->s + $this->f));
         }
-        if ($this->duration >= $this->minuteInSeconds) {
+        if ($this->includeMinute()) {
             if (!$this->returnFractions()) {
                 return sprintf("%02d:%02d", $this->m, $this->s);
             }
@@ -168,6 +193,26 @@ class NiceDuration
             return sprintf("%d", $this->s);
         }
         return sprintf("%05.3f", ($this->s + $this->f));
+    }
+
+    /**
+     * Should hour(s) be returned?
+     *
+     * @return  bool    True if hour(s) should be returned
+     */
+    private function includeHour()
+    {
+        return ($this->duration >= $this->hourInSeconds);
+    }
+
+    /**
+     * Should minute(s) be returned?
+     *
+     * @return  bool    True if minute(s) should be returned
+     */
+    private function includeMinute()
+    {
+        return ($this->duration >= $this->minuteInSeconds);
     }
 
     /**
