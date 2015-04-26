@@ -1,15 +1,9 @@
 <?php
 /**
  * @author      Anders K. Madsen <lillesvin@gmail.com>
- * @coversDefaultClass   \NiceDuration\NiceDuration
  */
 class NiceDurationTest extends PHPUnit_Framework_TestCase
 {
-    /**
-     * @covers  ::__construct
-     * @covers  ::validateFloat
-     * @covers  ::extractParts
-     */
     public function testConstruct()
     {
         $input = 594.11;
@@ -17,10 +11,6 @@ class NiceDurationTest extends PHPUnit_Framework_TestCase
             new \NiceDuration\NiceDuration($input));
     }
 
-    /**
-     * @covers  ::__construct
-     * @covers  ::validateFloat
-     */
     public function testConstructInvalidDuration()
     {
         $input = "41.4sd";
@@ -28,11 +18,6 @@ class NiceDurationTest extends PHPUnit_Framework_TestCase
         $nd = new \NiceDuration\NiceDuration($input);
     }
 
-    /**
-     * @covers  ::setFractionCutoff
-     * @covers  ::getFractionCutoff
-     * @covers  ::validateFloat
-     */
     public function testFractionCutoff()
     {
         $input  = 3600;
@@ -41,11 +26,6 @@ class NiceDurationTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($input, $nd->getFractionCutoff());
     }
 
-    /**
-     * @covers  ::setFractionCutoff
-     * @covers  ::getFractionCutoff
-     * @covers  ::validateFloat
-     */
     public function testInvalidFractionCutoff()
     {
         $input = "4m.af";
@@ -54,19 +34,12 @@ class NiceDurationTest extends PHPUnit_Framework_TestCase
         $this->assertNull($nd->getFractionCutoff());
     }
 
-    /**
-     * @covers  ::getFractionCutoff
-     */
     public function testDefaultFractionCutoff()
     {
         $nd = new \NiceDuration\NiceDuration(1);
         $this->assertEquals(43200, $nd->getFractionCutoff());
     }
 
-    /**
-     * @covers  ::format
-     * @covers  ::formatTime
-     */
     public function testConvertSubsecond()
     {
         // 0.1234 seconds
@@ -77,10 +50,6 @@ class NiceDurationTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($output, $nd->format());
     }
 
-    /**
-     * @covers  ::format
-     * @covers  ::formatTime
-     */
     public function testConvertSubsecondWithFraction()
     {
         // 0.1234 seconds
@@ -92,10 +61,6 @@ class NiceDurationTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($output, $nd->format());
     }
 
-    /**
-     * @covers  ::format
-     * @covers  ::formatTime
-     */
     public function testConvertSubsecondNoFraction()
     {
         // 0.1234 seconds
@@ -107,10 +72,6 @@ class NiceDurationTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($output, $nd->format());
     }
 
-    /**
-     * @covers  ::format
-     * @covers  ::formatTime
-     */
     public function testConvertSecond()
     {
         // 3.1415 seconds
@@ -121,10 +82,6 @@ class NiceDurationTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($output, $nd->format());
     }
 
-    /**
-     * @covers  ::format
-     * @covers  ::formatTime
-     */
     public function testConvertSecondWithFraction()
     {
         // 3.1415 seconds
@@ -136,10 +93,6 @@ class NiceDurationTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($output, $nd->format());
     }
 
-    /**
-     * @covers  ::format
-     * @covers  ::formatTime
-     */
     public function testConvertSecondNoFraction()
     {
         // 3.1415 seconds
@@ -151,10 +104,6 @@ class NiceDurationTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($output, $nd->format());
     }
 
-    /**
-     * @covers  ::format
-     * @covers  ::formatTime
-     */
     public function testConvertMinute()
     {
         // 22 minutes and 44.4 seconds
@@ -165,10 +114,6 @@ class NiceDurationTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($output, $nd->format());
     }
 
-    /**
-     * @covers  ::format
-     * @covers  ::formatTime
-     */
     public function testConvertMinuteWithFraction()
     {
         // 22 minutes and 44.4 seconds
@@ -180,10 +125,6 @@ class NiceDurationTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($output, $nd->format());
     }
 
-    /**
-     * @covers  ::format
-     * @covers  ::formatTime
-     */
     public function testConvertMinuteNoFraction()
     {
         // 22 minutes and 44.4 seconds
@@ -195,10 +136,6 @@ class NiceDurationTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($output, $nd->format());
     }
 
-    /**
-     * @covers  ::format
-     * @covers  ::formatTime
-     */
     public function testConvertHour()
     {
         // 14 hours, 21 minutes and 1.121 seconds
@@ -209,10 +146,6 @@ class NiceDurationTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($output, $nd->format());
     }
 
-    /**
-     * @covers  ::format
-     * @covers  ::formatTime
-     */
     public function testConvertHourWithFraction()
     {
         // 14 hours, 21 minutes and 1.121 seconds
@@ -224,10 +157,6 @@ class NiceDurationTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($output, $nd->format());
     }
 
-    /**
-     * @covers  ::format
-     * @covers  ::formatTime
-     */
     public function testConvertHourNoFraction()
     {
         // 14 hours, 21 minutes and 1.121 seconds
@@ -239,10 +168,6 @@ class NiceDurationTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($output, $nd->format());
     }
 
-    /**
-     * @covers  ::format
-     * @covers  ::formatTime
-     */
     public function testConvertDay()
     {
         // 2 days, 13 hours, 51 minutes and 24.919 seconds
@@ -253,10 +178,6 @@ class NiceDurationTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($output, $nd->format());
     }
 
-    /**
-     * @covers  ::format
-     * @covers  ::formatTime
-     */
     public function testConvertDayWithFraction()
     {
         // 2 days, 13 hours, 51 minutes and 24.919 seconds
@@ -268,10 +189,6 @@ class NiceDurationTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($output, $nd->format());
     }
 
-    /**
-     * @covers  ::format
-     * @covers  ::formatTime
-     */
     public function testConvertDayNoFraction()
     {
         // 2 days, 13 hours, 51 minutes and 24.919 seconds
@@ -283,10 +200,6 @@ class NiceDurationTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($output, $nd->format());
     }
 
-    /**
-     * @covers  ::format
-     * @covers  ::formatTime
-     */
     public function testConvertYear()
     {
         // 4 years, 84 days, 3 hours, 8 minutes and 1.13 seconds
@@ -297,10 +210,6 @@ class NiceDurationTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($output, $nd->format());
     }
 
-    /**
-     * @covers  ::format
-     * @covers  ::formatTime
-     */
     public function testConvertYearWithFraction()
     {
         // 4 years, 84 days, 3 hours, 8 minutes and 1.13 seconds
@@ -312,10 +221,6 @@ class NiceDurationTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($output, $nd->format());
     }
 
-    /**
-     * @covers  ::format
-     * @covers  ::formatTime
-     */
     public function testConvertYearNoFraction()
     {
         // 4 years, 84 days, 3 hours, 8 minutes and 1.13 seconds
