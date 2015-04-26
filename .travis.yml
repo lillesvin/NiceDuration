@@ -19,10 +19,9 @@ before_script:
 
 script:
  - mkdir -p build/logs
- - phpunit --coverage-text
+ - phpunit --coverage-clover coverage.clover
 
 after_script:
  - php vendor/bin/coveralls -v
- - cp build/logs/clover.xml coverage.clover
  - php vendor/bin/ocular code-coverage:upload --format=php-clover coverage.clover
 
