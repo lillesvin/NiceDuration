@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/lillesvin/NiceDuration.svg?branch=master)](https://travis-ci.org/lillesvin/NiceDuration)
+
 # NiceDuration
 Converts a duration in seconds into something human readable
 
